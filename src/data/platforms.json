@@ -1,0 +1,41 @@
+[
+  {
+    "text": "PC"
+  },
+  {
+    "text": "Switch"
+  },
+  {
+    "text": "mobile"
+  },
+  {
+    "text": "VR"
+  },
+  {
+    "text": "browser"
+  },
+  {
+    "text": "Game Boy-style handheld"
+  },
+  {
+    "text": "PlayStation"
+  },
+  {
+    "text": "Xbox"
+  },
+  {
+    "text": "Steam Deck"
+  },
+  {
+    "text": "arcade cabinet"
+  },
+  {
+    "text": "tablet"
+  },
+  {
+    "text": "smartwatch",
+    "tags": [
+      "solo"
+    ]
+  }
+]
