@@ -1,0 +1,81 @@
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--c-bg);
+  background-image: linear-gradient(var(--c-grid) 1px, transparent 1px), linear-gradient(90deg, var(--c-grid) 1px, transparent 1px);
+  background-size: 64px 64px;
+  color: var(--c-text);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.3;
+  image-rendering: pixelated;
+}
+
+button { font: inherit; color: inherit; cursor: pointer; }
+/* Ink inner band keeps the verdigris ring visible on bronze as well as on dark wood. */
+:focus-visible { outline: 4px solid var(--c-accent-3); outline-offset: 2px; box-shadow: 0 0 0 2px var(--c-on-accent); }
+
+/* Mobile first: header / stage / panel / dock in one column, dock sticky. */
+.app {
+  display: grid; gap: var(--space-4); min-height: 100dvh; padding: var(--space-4);
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto 1fr auto auto;
+  grid-template-areas: 'head' 'stage' 'panel' 'dock';
+}
+/* Logo: pixel chest + wordmark; chest 32px (1x) on mobile, 64px (2x) on desktop. */
+.app__logo { --logo-h: 32px; grid-area: head; justify-self: start; display: flex; align-items: center; gap: var(--space-2); margin: 0; padding: 0 var(--space-3); }
+.app__logo img { height: var(--logo-h); width: auto; }
+.app__logo img:first-child { image-rendering: pixelated; }
+.stage {
+  grid-area: stage; min-width: 0; display: flex; flex-direction: column; gap: var(--space-5);
+  color: var(--c-text); padding: var(--space-3); background: var(--c-surface);
+}
+.stage > :first-child { margin-top: auto; }
+.stage > :last-child { margin-bottom: auto; }
+
+/* Bevelled button: --fill/--hi/--lo are swapped per variant; :active inverts the bevel and sinks 4px. */
+.btn {
+  --fill: var(--c-bronze); --hi: var(--c-bronze-hi); --lo: var(--c-bronze-lo);
+  font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: 0.05em; color: var(--c-on-accent);
+  background: var(--fill); border: var(--border); min-height: 2.75rem; padding: var(--space-2);
+  box-shadow: inset 0 4px var(--hi), inset 0 -4px var(--lo), 0 4px var(--c-line);
+}
+.btn:hover { filter: brightness(1.12); }
+.btn:active, .btn[aria-pressed='true'] { box-shadow: inset 0 4px var(--lo), inset 0 -4px var(--hi); }
+.btn[aria-pressed='true'] { --fill: var(--c-bronze-hi); }
+@media (prefers-reduced-motion: no-preference) {
+  .btn:active { transform: translateY(4px); }
+}
+.btn--roll { --fill: var(--c-accent); --hi: var(--c-accent-hi); font-size: var(--fs-lg); padding: var(--space-1); }
+.btn__hint { font-size: var(--fs-xs); opacity: 0.8; margin-left: var(--space-2); }
+
+.toolbar {
+  grid-area: dock; position: sticky; bottom: var(--space-2); z-index: 1; display: grid; gap: var(--space-2);
+  padding: var(--space-2) var(--space-3); background: var(--c-surface);
+}
+.toolbar__row { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-2); }
+.toolbar__row .btn { font-size: 0.75rem; min-height: 2.3rem; padding: 2px; line-height: 1.2; }
+.toolbar__status { position: absolute; right: var(--space-2); bottom: 100%; margin: 0 0 var(--space-3); color: var(--c-accent-3); }
+.toolbar__status:not(:empty) { background: var(--c-slot); border: var(--border); padding: 0 var(--space-2); }
+
+@media (min-width: 52rem) {
+  .app__logo { --logo-h: 64px; }
+  .app {
+    height: 100dvh; overflow: hidden; row-gap: var(--space-2);
+    grid-template-columns: minmax(0, 1fr) clamp(18rem, 22vw, 26rem);
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    grid-template-areas: 'head head' 'stage panel' 'dock dock';
+  }
+  .stage { overflow: auto; padding: var(--space-3) var(--space-5); }
+  .toolbar { position: relative; bottom: auto; grid-template-columns: minmax(14rem, 2fr) 3fr; gap: var(--space-4); padding: var(--space-2) var(--space-4); }
+  .toolbar__row { gap: var(--space-4); }
+  .toolbar__row .btn { font-size: var(--fs-dock); min-height: var(--h-dock); padding: var(--space-2); }
+  .toolbar .btn--roll { font-size: var(--fs-dock-roll); min-height: var(--h-dock); }
+  .toolbar .btn__hint { font-size: var(--fs-dock); }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}

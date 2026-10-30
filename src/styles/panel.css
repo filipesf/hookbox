@@ -1,0 +1,37 @@
+.panel { grid-area: panel; min-width: 0; }
+.panel__summary {
+  font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: 0.05em; color: var(--c-accent);
+  background: var(--c-surface); padding: var(--space-1) var(--space-3); cursor: pointer;
+}
+.saved { margin-top: 2rem; background: var(--c-surface); padding: 0 var(--space-3) var(--space-3); }
+/* Ribbon straddles the frame's top edge: 40px tall = 28px text line centred on the red band. */
+.saved__heading {
+  width: fit-content; height: 40px; margin: calc(-1 * (var(--fw) + 12px)) auto var(--space-4); padding: 0 var(--space-2);
+  border: solid transparent; border-width: 0 20px; border-image: var(--ribbon);
+  font: var(--fs-lg) / 28px var(--font-body); letter-spacing: 0.05em; text-transform: uppercase; color: var(--c-title);
+}
+.saved__empty { margin: 0; color: var(--c-muted); }
+.saved__list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-2); }
+.saved__item { display: flex; gap: var(--space-1); }
+.saved__restore {
+  flex: 1; min-width: 0; display: grid; text-align: left; gap: 0.1rem;
+  background: var(--c-slot); border: 4px solid var(--c-line); box-shadow: inset 0 0 0 2px var(--c-bronze-lo); padding: var(--space-1) var(--space-2);
+}
+.saved__restore:hover { box-shadow: inset 0 0 0 2px var(--c-bronze); }
+.saved__restore span { color: var(--c-muted); font-size: var(--fs-body-sm); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.saved__remove { min-width: 2rem; color: var(--c-on-accent); background: var(--c-bronze); border: 4px solid var(--c-line); box-shadow: inset 2px 2px var(--c-bronze-hi), inset -2px -2px var(--c-bronze-lo); padding: 0; }
+.saved__remove:hover { filter: brightness(1.12); }
+
+/* Desktop: always-open side panel; History fills the column. Summary is only for mobile. */
+@media (min-width: 52rem) {
+  .panel { overflow: hidden; padding-top: 1rem; }
+  .panel__summary { display: none; }
+  .panel::details-content { content-visibility: visible; display: flex; flex-direction: column; gap: 2rem; height: 100%; }
+  .saved { margin-top: 0; }
+  .saved:last-of-type { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+  .saved:last-of-type .saved__list { overflow: auto; padding-bottom: 4px; }
+}
+
+/* Frames. Last in the cascade: the `border` shorthand resets border-image. */
+.stage, .saved, .toolbar { border: var(--border); border-width: var(--fw); border-image: var(--frame-fit); background-clip: padding-box; }
+.chips__item, .panel__summary { border: var(--border); border-width: 12px; border-image: var(--frame-sm); background-clip: padding-box; }

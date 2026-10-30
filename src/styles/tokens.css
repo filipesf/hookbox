@@ -1,0 +1,59 @@
+:root {
+  /* 16-bit fantasy RPG: navy night, dark wood, bronze, gold, blood red, verdigris. */
+  --c-bg: #2b2030;
+  --c-grid: #312537;
+  --c-surface: #4a2e1c; /* wood */
+  --c-slot: #2e1d12;
+  --c-line: #1e140f; /* ink: outlines and text on bronze / gold */
+  --c-on-accent: #1e140f;
+  --c-text: #efe1bf;
+  --c-title: #faf1da;
+  --c-muted: #c9965a;
+  --c-bronze: #ab7640;
+  --c-bronze-hi: #c9965a;
+  --c-bronze-lo: #7a4e2e;
+  --c-accent: #e2b54a;
+  --c-accent-hi: #f5d27a;
+  --c-red: #d8463a;
+  --c-red-hi: #f08a70;
+  --c-accent-3: #5fb39a; /* focus ring */
+
+  --font-display: 'Jacquard 24', serif;
+  --font-body: 'Pixelify Sans', monospace;
+
+  --border: 4px solid var(--c-line);
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+
+  --fs-xs: 0.8rem;
+  --fs-lg: 1.5rem;
+  --fs-body: 1.25rem;
+  --fs-body-sm: 1rem;
+  --fs-pitch: clamp(1.4rem, min(2.45vw, calc(2.2rem + (100dvh - 900px) * 0.09)), 2.2rem);
+  --fs-extra: clamp(1rem, calc(1.5rem + (100dvh - 900px) * 0.03), 1.5rem);
+  --fs-extra-label: clamp(0.8rem, calc(1.1rem + (100dvh - 900px) * 0.02), 1.1rem);
+  --h-extra-ctl: clamp(1.5rem, calc(2.25rem + (100dvh - 900px) * 0.04), 2.25rem);
+  --fs-dock: 1.2rem;
+  --fs-dock-roll: 2.25rem;
+  --h-dock: 4rem;
+  --fs-title: clamp(2rem, min(5vw, calc(4rem + (100dvh - 900px) * 0.16)), 4rem);
+
+  /* Frame width: big 9-slice on desktop, small on mobile (integer scale only, so it stays crisp). */
+  --fw: 12px;
+  --frame-fit: var(--frame-sm);
+
+  /* 9-slice frames: ink outline, bronze band (bevel + gold rivets), ink inner line. Pair with `border-width`. */
+  --frame: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' shape-rendering='crispEdges'%3E%3Cpath fill='%231e140f' fill-rule='evenodd' d='M0 0h48v48H0zM4 4h40v40H4zM16 16h16v16H16zM20 20h8v8h-8z'/%3E%3Cpath fill='%23ab7640' fill-rule='evenodd' d='M4 4h40v40H4zM16 16h16v16H16z'/%3E%3Cpath fill='%23c9965a' d='M4 4h40v4H4zM4 4h4v40H4z'/%3E%3Cpath fill='%237a4e2e' d='M4 40h40v4H4zM40 4h4v40h-4z'/%3E%3Cpath fill='%23e2b54a' d='M8 8h4v4H8zM36 8h4v4h-4zM8 36h4v4H8zM36 36h4v4h-4z'/%3E%3C/svg%3E") 20 stretch;
+  --frame-sm: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26' shape-rendering='crispEdges'%3E%3Cpath fill='%231e140f' fill-rule='evenodd' d='M0 0h26v26H0zM2 2h22v22H2zM10 10h6v6h-6zM12 12h2v2h-2z'/%3E%3Cpath fill='%23ab7640' fill-rule='evenodd' d='M2 2h22v22H2zM10 10h6v6h-6z'/%3E%3Cpath fill='%23c9965a' d='M2 2h22v2H2zM2 2h2v22H2z'/%3E%3Cpath fill='%237a4e2e' d='M2 22h22v2H2zM22 2h2v22h-2z'/%3E%3Cpath fill='%23e2b54a' d='M5 5h2v2H5zM19 5h2v2h-2zM5 19h2v2H5zM19 19h2v2h-2z'/%3E%3C/svg%3E") 12 stretch;
+  /* Ribbon header: 3-slice, left/right 20px swallow-tail ends, 40px tall. */
+  --ribbon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='40' shape-rendering='crispEdges'%3E%3Cdefs%3E%3Cg id='h'%3E%3Cpath fill='%231e140f' d='M0 8h20v32H0v-8h4v-4h4v-8H4v-4H0z'/%3E%3Cpath fill='%238e2a2a' d='M4 12h16v24H4v-4h4v-4h4v-8H8v-4H4z'/%3E%3Cpath fill='%231e140f' d='M16 0h8v32h-8z'/%3E%3Cpath fill='%23d8463a' d='M20 4h4v24h-4z'/%3E%3Cpath fill='%23f08a70' d='M20 4h4v4h-4z'/%3E%3Cpath fill='%238e2a2a' d='M20 24h4v4h-4z'/%3E%3C/g%3E%3C/defs%3E%3Cuse href='%23h'/%3E%3Cuse href='%23h' transform='matrix(-1 0 0 1 48 0)'/%3E%3C/svg%3E") 0 20 fill / 0 20px stretch;
+  /* Divider ends (8px diamond) and select chevron (10x6 pixel triangle). */
+  --diamond: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' shape-rendering='crispEdges'%3E%3Cpath fill='%23ab7640' d='M3 0h2v2H3zM1 2h6v2H1zM1 4h6v2H1zM3 6h2v2H3z'/%3E%3C/svg%3E");
+  --chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' shape-rendering='crispEdges'%3E%3Cpath fill='%23efe1bf' d='M0 0h10v2H0zM2 2h6v2H2zM4 4h2v2H4z'/%3E%3C/svg%3E");
+}
+@media (min-width: 52rem) {
+  :root { --fw: 20px; --frame-fit: var(--frame); }
+}
